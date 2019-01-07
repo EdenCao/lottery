@@ -1,3 +1,4 @@
 package: .
 import:
 - package: github.com/kataras/iris
+- package: github.com/iris-contrib/httpexpect

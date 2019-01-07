@@ -45,7 +45,8 @@ func (c *lotteryController) Get() string {
 func (c *lotteryController) PostImport() string {
   strUsers := c.Ctx.FormValue("users")
   users := strings.Split(strUsers, ",")
-  beforeImportedUsersCount := len(userList);
+  beforeImportedUsersCount := len(userList)
+
   for _, u := range users {
     u = strings.TrimSpace(u)
     if len(u) > 0 {
@@ -58,6 +59,7 @@ func (c *lotteryController) PostImport() string {
 
 func (c *lotteryController) GetLucky() string {
   userCount := len(userList)
+
   if userCount > 1 {
     seed := time.Now().UnixNano()
     index := rand.New(rand.NewSource(seed)).Int31n(int32(userCount))
@@ -68,7 +70,7 @@ func (c *lotteryController) GetLucky() string {
   } else if userCount == 1 {
     user := userList[0]
 
-    return fmt.Sprintf("lucy user is %s, remaining %d", user, userCount - 1)
+    return fmt.Sprintf("lucky user is %s, remaining %d", user, userCount - 1)
   } else {
 
     return fmt.Sprint("no more user")
